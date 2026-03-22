@@ -2,33 +2,74 @@
 <html>
 <head>
   <title>Shubham Pandey</title>
+
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      font-family: 'Segoe UI', sans-serif;
       background: #0f172a;
       color: white;
     }
+
     header {
       text-align: center;
-      padding: 60px;
-      background: #1e293b;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #1e293b, #020617);
     }
+
     h1 {
+      font-size: 48px;
       margin: 0;
-      font-size: 42px;
     }
+
+    h2 {
+      color: #38bdf8;
+    }
+
     section {
-      padding: 40px;
-      max-width: 900px;
+      padding: 50px;
+      max-width: 1000px;
       margin: auto;
     }
+
     .card {
       background: #1e293b;
-      padding: 20px;
-      margin: 15px 0;
+      padding: 25px;
+      margin: 20px 0;
       border-radius: 12px;
+      transition: 0.3s;
     }
+
+    .card:hover {
+      transform: scale(1.03);
+      background: #334155;
+    }
+
+    .skills span {
+      display: inline-block;
+      background: #38bdf8;
+      color: black;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #38bdf8;
+      color: black;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
   </style>
 </head>
 
@@ -42,9 +83,14 @@
 <section>
   <h2>About Me</h2>
   <p>
-    I am a Computational Physics student at MIT World Peace University, Pune.
-    I am passionate about AI, machine learning, and quantitative finance,
-    focusing on building intelligent trading systems and research-driven models.
+    I am a Computational Physics undergraduate at MIT World Peace University, Pune,
+    passionate about artificial intelligence, quantitative finance, and scientific computing.
+    I build models at the intersection of mathematics, physics, and machine learning.
+  </p>
+
+  <p>
+    Currently, I work as a Research Intern at Quant Insider, focusing on market analysis,
+    volatility modeling, and quantitative trading strategies.
   </p>
 </section>
 
@@ -52,27 +98,69 @@
   <h2>Projects</h2>
 
   <div class="card">
-    <h3>AI Trading Strategy</h3>
-    <p>Developing machine learning-based high-frequency trading strategies.</p>
+    <h3>Hybrid Neural Network for Arbitrage-Free Option Pricing</h3>
+    <p>
+      Built a deep learning model enforcing no-arbitrage constraints.
+      Achieved MAE of 0.38 and 85.2% arbitrage compliance.
+    </p>
   </div>
 
   <div class="card">
-    <h3>Radiation Monitoring System</h3>
-    <p>AI-powered radiation monitoring system (Top 7 in hackathon).</p>
+    <h3>AI Trading Strategies</h3>
+    <p>
+      Developed machine learning-based trading strategies using cointegration,
+      stationarity testing, and regime detection.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>AI Radiation Monitoring System (AdvRad)</h3>
+    <p>
+      Led a team to build an AI-powered radiation detection system with real-time analytics.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Supernova Hydrodynamics Simulation</h3>
+    <p>
+      Built numerical solvers to simulate shock propagation and early light curves in supernovae.
+    </p>
   </div>
 
 </section>
 
 <section>
-  <h2>Research</h2>
-  <p>
-    Hybrid Neural Network Approach for Arbitrage-Free Option Pricing with Learned Volatility Surfaces.
-  </p>
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>Python</span>
+    <span>C++</span>
+    <span>Machine Learning</span>
+    <span>Quant Finance</span>
+    <span>Monte Carlo</span>
+    <span>PDE Solvers</span>
+    <span>Statistics</span>
+    <span>TensorFlow</span>
+    <span>NumPy</span>
+    <span>Pandas</span>
+  </div>
+</section>
+
+<section>
+  <h2>Resume</h2>
+  <p>You can download my resume below:</p>
+  <a href="#" class="btn">Download Resume</a>
 </section>
 
 <section>
   <h2>Contact</h2>
-  <p>Email: your@email.com</p>
+  <p>Email: shubhampandey1069@gmail.com</p>
+  <p>Phone: +91 7317066093</p>
+  <p>
+    LinkedIn: 
+    <a href="https://linkedin.com/in/shubham-pandey-007420327" target="_blank">
+      View Profile
+    </a>
+  </p>
 </section>
 
 </body>
