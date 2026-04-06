@@ -1,166 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Shubham Pandey</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shubham Pandey — Computational Physicist & Quant</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #1e293b, #020617);
-    }
+<style>
+/* ===== ADDITION ===== */
+.proj-links { margin-top: 18px; display: flex; gap: 12px; }
+.proj-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text2);
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  padding: 6px 12px;
+  transition: all 0.2s;
+}
+.proj-link:hover {
+  color: var(--amber);
+  border-color: var(--amber-mid);
+}
+/* ===== ORIGINAL CSS (UNCHANGED) ===== */
+:root {
+  --bg:#070708;--bg2:#0d0d10;--bg3:#13131a;
+  --surface:#16161f;
+  --amber:#f0a500;--amber-dim:rgba(240,165,0,0.12);--amber-mid:rgba(240,165,0,0.35);
+  --teal:#00d4aa;--red:#ff4d6d;
+  --text:#e2e2e8;--text2:#9999aa;--text3:#55556a;
+  --border:rgba(240,165,0,0.1);--border2:rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif}
 
-    h1 {
-      font-size: 48px;
-      margin: 0;
-    }
+/* NAV */
+nav{
+position:fixed;top:0;left:0;right:0;
+display:flex;justify-content:space-between;
+padding:20px 60px;
+background:rgba(7,7,8,0.9);
+border-bottom:1px solid var(--border)
+}
+.nav-status{
+font-family:'IBM Plex Mono',monospace;
+font-size:11px;color:var(--teal);
+display:flex;gap:8px;align-items:center
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
 
-    h2 {
-      color: #38bdf8;
-    }
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;padding-top:80px}
+.hero-left{padding:80px 60px}
+.hero-name{font-size:80px;font-family:'Playfair Display',serif}
+.hero-descriptor{margin-top:20px;color:var(--text2)}
+.btn{padding:10px 20px;text-decoration:none}
+.btn-gold{background:var(--amber);color:black}
+.btn-outline{border:1px solid var(--border2);color:var(--text2)}
 
-    section {
-      padding: 50px;
-      max-width: 1000px;
-      margin: auto;
-    }
+/* PROJECT */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.proj-card{padding:30px;background:var(--surface);border:1px solid var(--border2)}
+.proj-title{font-size:20px;font-family:'Playfair Display',serif}
+.proj-desc{color:var(--text2)}
+.proj-stat{background:var(--amber-dim);padding:4px 10px;font-size:12px}
 
-    .card {
-      background: #1e293b;
-      padding: 25px;
-      margin: 20px 0;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-      background: #334155;
-    }
-
-    .skills span {
-      display: inline-block;
-      background: #38bdf8;
-      color: black;
-      padding: 8px 12px;
-      margin: 5px;
-      border-radius: 20px;
-      font-size: 14px;
-    }
-
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #38bdf8;
-      color: black;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Shubham Pandey</h1>
-  <p>AI | Quant | Computational Physics</p>
-</header>
-
-<section>
-  <h2>About Me</h2>
-  <p>
-    I am a Computational Physics undergraduate at MIT World Peace University, Pune,
-    passionate about artificial intelligence, quantitative finance, and scientific computing.
-    I build models at the intersection of mathematics, physics, and machine learning.
-  </p>
-
-  <p>
-    Currently, I work as a Research Intern at Quant Insider, focusing on market analysis,
-    volatility modeling, and quantitative trading strategies.
-  </p>
-</section>
-
-<section>
-  <h2>Projects</h2>
-
-  <div class="card">
-    <h3>Hybrid Neural Network for Arbitrage-Free Option Pricing</h3>
-    <p>
-      Built a deep learning model enforcing no-arbitrage constraints.
-      Achieved MAE of 0.38 and 85.2% arbitrage compliance.
-    </p>
+<!-- NAV -->
+<nav>
+  <div>SP_001</div>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Open to Quant & Research Roles
   </div>
+</nav>
 
-  <div class="card">
-    <h3>AI Trading Strategies</h3>
-    <p>
-      Developed machine learning-based trading strategies using cointegration,
-      stationarity testing, and regime detection.
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <h1 class="hero-name">Shubham Pandey</h1>
+
+    <p class="hero-descriptor">
+      Computational Physicist working at intersection of ML, Quant Finance and Scientific Computing.
     </p>
-  </div>
 
-  <div class="card">
-    <h3>AI Radiation Monitoring System (AdvRad)</h3>
-    <p>
-      Led a team to build an AI-powered radiation detection system with real-time analytics.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Supernova Hydrodynamics Simulation</h3>
-    <p>
-      Built numerical solvers to simulate shock propagation and early light curves in supernovae.
-    </p>
-  </div>
-
-</section>
-
-<section>
-  <h2>Skills</h2>
-  <div class="skills">
-    <span>Python</span>
-    <span>C++</span>
-    <span>Machine Learning</span>
-    <span>Quant Finance</span>
-    <span>Monte Carlo</span>
-    <span>PDE Solvers</span>
-    <span>Statistics</span>
-    <span>TensorFlow</span>
-    <span>NumPy</span>
-    <span>Pandas</span>
+    <br>
+    <a href="#contact" class="btn btn-gold">Contact</a>
+    <a href="#projects" class="btn btn-outline">Projects</a>
   </div>
 </section>
 
-<section>
-  <h2>Resume</h2>
-  <p>You can download my resume below:</p>
-  <a href="#" class="btn">Download Resume</a>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="proj-card">
+      <h3 class="proj-title">Multi-Factor Strategy</h3>
+      <p class="proj-desc">Momentum, Value, Quality strategy</p>
+
+      <div>
+        <span class="proj-stat">Sharpe 1.12</span>
+        <span class="proj-stat">Return 22.9%</span>
+      </div>
+
+      <div class="proj-links">
+        <a href="https://github.com/yourusername/project1" target="_blank" class="proj-link">Code ↗</a>
+        <a href="#" class="proj-link">Details</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="proj-card">
+      <h3 class="proj-title">Arbitrage-Free NN</h3>
+      <p class="proj-desc">Option pricing with constraints</p>
+
+      <div>
+        <span class="proj-stat">MAE 0.38</span>
+        <span class="proj-stat">85% Arb</span>
+      </div>
+
+      <div class="proj-links">
+        <a href="https://github.com/yourusername/project2" target="_blank" class="proj-link">Code ↗</a>
+        <a href="#" class="proj-link">Details</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section>
+<!-- CONTACT -->
+<section id="contact">
   <h2>Contact</h2>
-  <p>Email: shubhampandey1069@gmail.com</p>
-  <p>Phone: +91 7317066093</p>
-  <p>
-    LinkedIn: 
-    <a href="https://linkedin.com/in/shubham-pandey-007420327" target="_blank">
-      View Profile
-    </a>
-  </p>
+
+  <a href="mailto:shubhampandey1069@gmail.com?subject=Opportunity%20Discussion">
+    Email Me
+  </a>
+
+  <br><br>
+
+  <!-- FIXED RESUME -->
+  <a href="Shubham_Pandey_Resume.pdf" download>
+    Download Resume
+  </a>
+
 </section>
 
 </body>
