@@ -4,152 +4,679 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Shubham Pandey — Computational Physicist & Quant</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
 <style>
-/* ===== ADDITION ===== */
-.proj-links { margin-top: 18px; display: flex; gap: 12px; }
-.proj-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--text2);
-  text-decoration: none;
-  border: 1px solid var(--border2);
-  padding: 6px 12px;
-  transition: all 0.2s;
-}
-.proj-link:hover {
-  color: var(--amber);
-  border-color: var(--amber-mid);
-}
-/* ===== ORIGINAL CSS (UNCHANGED) ===== */
 :root {
-  --bg:#070708;--bg2:#0d0d10;--bg3:#13131a;
-  --surface:#16161f;
-  --amber:#f0a500;--amber-dim:rgba(240,165,0,0.12);--amber-mid:rgba(240,165,0,0.35);
-  --teal:#00d4aa;--red:#ff4d6d;
-  --text:#e2e2e8;--text2:#9999aa;--text3:#55556a;
-  --border:rgba(240,165,0,0.1);--border2:rgba(255,255,255,0.05);
+  --bg:        #070708;
+  --bg2:       #0d0d10;
+  --bg3:       #13131a;
+  --surface:   #16161f;
+  --amber:     #f0a500;
+  --amber-dim: rgba(240,165,0,0.12);
+  --amber-mid: rgba(240,165,0,0.35);
+  --teal:      #00d4aa;
+  --red:       #ff4d6d;
+  --text:      #e2e2e8;
+  --text2:     #9999aa;
+  --text3:     #55556a;
+  --border:    rgba(240,165,0,0.1);
+  --border2:   rgba(255,255,255,0.05);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 900;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+}
+
+/* CURSOR */
+.cursor { position: fixed; z-index: 9999; width: 8px; height: 8px; background: var(--amber); border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); }
+.cursor-ring { position: fixed; z-index: 9998; width: 28px; height: 28px; border: 1px solid var(--amber-mid); border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, border-color 0.2s; }
 
 /* NAV */
-nav{
-position:fixed;top:0;left:0;right:0;
-display:flex;justify-content:space-between;
-padding:20px 60px;
-background:rgba(7,7,8,0.9);
-border-bottom:1px solid var(--border)
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 60px;
+  background: rgba(7,7,8,0.88);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
 }
-.nav-status{
-font-family:'IBM Plex Mono',monospace;
-font-size:11px;color:var(--teal);
-display:flex;gap:8px;align-items:center
-}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.nav-id { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--amber); letter-spacing: 0.2em; text-decoration: none; }
+.nav-id span { color: var(--text3); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.nav-links a:hover { color: var(--amber); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-status { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--teal); display: flex; align-items: center; gap: 8px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
 /* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;padding-top:80px}
-.hero-left{padding:80px 60px}
-.hero-name{font-size:80px;font-family:'Playfair Display',serif}
-.hero-descriptor{margin-top:20px;color:var(--text2)}
-.btn{padding:10px 20px;text-decoration:none}
-.btn-gold{background:var(--amber);color:black}
-.btn-outline{border:1px solid var(--border2);color:var(--text2)}
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-canvas { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; opacity: 0.2; }
 
-/* PROJECT */
-.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.proj-card{padding:30px;background:var(--surface);border:1px solid var(--border2)}
-.proj-title{font-size:20px;font-family:'Playfair Display',serif}
-.proj-desc{color:var(--text2)}
-.proj-stat{background:var(--amber-dim);padding:4px 10px;font-size:12px}
+.hero-left {
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+  opacity: 0; animation: slideIn 0.7s ease forwards 0.2s;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--amber); }
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 8.5vw, 110px);
+  font-weight: 700; line-height: 0.9; letter-spacing: -0.02em;
+  opacity: 0; animation: slideIn 0.8s ease forwards 0.35s;
+}
+.hero-name-line2 { display: block; font-style: italic; font-weight: 400; color: transparent; -webkit-text-stroke: 1px rgba(240,165,0,0.55); }
+.hero-descriptor {
+  margin-top: 36px; font-size: 17px; color: var(--text2); max-width: 520px; line-height: 1.75; font-weight: 300;
+  opacity: 0; animation: slideIn 0.8s ease forwards 0.5s;
+}
+.hero-descriptor strong { color: var(--text); font-weight: 500; }
+.hero-actions {
+  margin-top: 52px; display: flex; gap: 16px;
+  opacity: 0; animation: slideIn 0.8s ease forwards 0.65s;
+}
+.btn { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 28px; border-radius: 2px; text-decoration: none; cursor: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 10px; }
+.btn-gold { background: var(--amber); color: var(--bg); border: 1px solid var(--amber); }
+.btn-gold:hover { background: transparent; color: var(--amber); }
+.btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
+.btn-outline:hover { border-color: var(--amber-mid); color: var(--amber); }
 
+.hero-right {
+  padding: 80px 48px 80px 0;
+  display: flex; flex-direction: column; justify-content: center; gap: 20px;
+  position: relative; z-index: 2;
+  border-left: 1px solid var(--border);
+  padding-left: 40px;
+}
+.terminal-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; opacity: 0; animation: slideIn 0.8s ease forwards 0.8s; box-shadow: 0 0 40px rgba(240,165,0,0.06); }
+.terminal-bar { background: var(--bg3); padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-dot-r{background:#ff5f57} .t-dot-y{background:#febc2e} .t-dot-g{background:#28c840}
+.terminal-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); margin-left: 8px; }
+.terminal-body { padding: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.9; }
+.t-line { display: block; } .t-blank { display: block; height: 6px; }
+.t-prompt{color:var(--amber)} .t-key{color:var(--teal)} .t-val{color:var(--text2)} .t-str{color:#c8f097} .t-comment{color:var(--text3);font-style:italic} .t-num{color:#f5a623}
+
+.hero-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; opacity: 0; animation: slideIn 0.8s ease forwards 1s; }
+.metric-box { background: var(--bg2); padding: 18px 14px; text-align: center; transition: background 0.2s; }
+.metric-box:hover { background: var(--bg3); }
+.metric-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--amber); line-height: 1; }
+.metric-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--text3); letter-spacing: 0.08em; margin-top: 4px; }
+
+@keyframes slideIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* SECTIONS */
+.section-wrap { max-width: 1160px; margin: 0 auto; padding: 110px 60px; }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--amber); margin-bottom: 12px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 700; line-height: 1.05; }
+.section-title em { font-style: italic; font-weight: 400; color: var(--amber); }
+
+/* EXPERIENCE */
+#experience { background: var(--bg2); }
+.exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 0 48px; padding: 40px 0; border-bottom: 1px solid var(--border2); opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.exp-item.visible { opacity: 1; transform: none; }
+.exp-period { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--amber); letter-spacing: 0.05em; margin-bottom: 8px; }
+.exp-company { font-size: 13px; font-weight: 500; color: var(--text2); }
+.exp-badge { display: inline-block; margin-top: 10px; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25); color: var(--teal); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+.exp-role { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+.exp-bullets { list-style: none; }
+.exp-bullets li { font-size: 14.5px; color: var(--text2); font-weight: 300; line-height: 1.75; padding: 5px 0 5px 20px; position: relative; }
+.exp-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--amber); font-size: 16px; line-height: 1.6; }
+.exp-bullets li strong { color: var(--text); font-weight: 500; }
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.proj-card {
+  background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 36px;
+  position: relative; overflow: hidden; cursor: none;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.proj-card.visible { opacity: 1; transform: translateY(0); }
+.proj-card::before { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: linear-gradient(225deg, var(--amber-dim) 0%, transparent 70%); pointer-events: none; }
+.proj-card:hover { border-color: var(--amber-mid); box-shadow: 0 8px 48px rgba(240,165,0,0.06); transform: translateY(-6px) !important; }
+.proj-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; display: inline-block; margin-bottom: 20px; }
+.tag-nn  { background: rgba(240,165,0,0.12); color: var(--amber); border: 1px solid var(--amber-mid); }
+.tag-q   { background: rgba(0,212,170,0.1);  color: var(--teal); border: 1px solid rgba(0,212,170,0.3); }
+.tag-ai  { background: rgba(255,77,109,0.1); color: var(--red);  border: 1px solid rgba(255,77,109,0.3); }
+.tag-sim { background: rgba(120,120,255,0.1);color: #9b9bff;    border: 1px solid rgba(120,120,255,0.3); }
+.tag-sys { background: rgba(200,200,100,0.1);color: #d4d468;    border: 1px solid rgba(200,200,100,0.3); }
+.proj-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; line-height: 1.3; margin-bottom: 14px; }
+.proj-desc { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.75; margin-bottom: 24px; }
+.proj-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.proj-stat { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--amber); background: var(--amber-dim); padding: 5px 12px; border-radius: 2px; }
+.proj-supervisor { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border2); font-size: 12px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; line-height: 1.6; }
+.supervisor-label { color: var(--amber); }
+
+/* CERTIFICATIONS */
+.cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.cert-card {
+  background: var(--surface); border: 1px solid var(--border2); border-radius: 4px;
+  padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s;
+}
+.cert-card.visible { opacity: 1; transform: none; }
+.cert-card:hover { border-color: var(--amber-mid); }
+.cert-logo {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700;
+}
+.cert-logo-gs  { background: rgba(100,200,100,0.12); color: #6dc86d; border: 1px solid rgba(100,200,100,0.25); }
+.cert-logo-wq  { background: rgba(240,165,0,0.12);   color: var(--amber); border: 1px solid var(--amber-mid); }
+.cert-logo-jp  { background: rgba(100,150,255,0.12); color: #8aaeff; border: 1px solid rgba(100,150,255,0.3); }
+.cert-logo-ud  { background: rgba(255,100,100,0.12); color: #ff8080; border: 1px solid rgba(255,100,100,0.3); }
+.cert-issuer { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+.cert-title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 10px; }
+.cert-desc { font-size: 13px; color: var(--text2); font-weight: 300; line-height: 1.65; }
+.cert-year { display: inline-block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--teal); background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); padding: 3px 10px; border-radius: 2px; }
+
+/* SKILLS */
+#skills { background: var(--bg2); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill-block { border: 1px solid var(--border2); border-radius: 4px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.skill-block.visible { opacity: 1; transform: none; }
+.skill-block-head { background: var(--bg3); padding: 14px 20px; border-bottom: 1px solid var(--border2); display: flex; align-items: center; gap: 10px; }
+.skill-icon { font-size: 14px; }
+.skill-block-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
+.skill-block-body { background: var(--surface); padding: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip { font-size: 13px; font-weight: 400; padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 2px; color: var(--text); transition: all 0.2s; }
+.skill-chip:hover { background: var(--amber-dim); border-color: var(--amber-mid); color: var(--amber); }
+
+/* EDUCATION */
+.edu-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 44px 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.edu-card.visible { opacity: 1; transform: none; }
+.edu-degree { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.edu-school { font-size: 15px; font-weight: 400; color: var(--text2); margin-bottom: 4px; }
+.edu-loc { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.05em; }
+.edu-year { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: transparent; -webkit-text-stroke: 1px var(--amber-mid); line-height: 1; text-align: right; }
+.edu-status { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-top: 8px; text-align: right; }
+
+/* CONTACT */
+#contact { background: var(--bg2); }
+.contact-inner { max-width: 700px; }
+.contact-headline { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 64px); line-height: 1.1; font-weight: 700; margin-bottom: 20px; }
+.contact-headline em { font-style: italic; font-weight: 400; color: var(--amber); }
+.contact-sub { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.75; margin-bottom: 52px; }
+.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.contact-item { background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 20px 24px; text-decoration: none; display: flex; align-items: center; gap: 16px; transition: all 0.2s; cursor: none; }
+.contact-item:hover { border-color: var(--amber-mid); background: var(--amber-dim); }
+.contact-item-icon { font-size: 20px; flex-shrink: 0; color: var(--text2); }
+.contact-item-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+.contact-item-val { font-size: 13.5px; color: var(--text); font-weight: 400; }
+.contact-item:hover .contact-item-val { color: var(--amber); }
+
+/* FOOTER */
+.footer-wrap { max-width: 1160px; margin: 0 auto; padding: 0 60px; }
+footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; align-items: center; justify-content: space-between; }
+footer p { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.05em; }
+
+::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px} ::-webkit-scrollbar-thumb:hover{background:var(--amber-mid)}
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links, .nav-status { display: none; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 100px 24px 60px; }
+  .section-wrap { padding: 80px 24px; }
+  .projects-grid, .skills-grid, .cert-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .edu-card { grid-template-columns: 1fr; }
+  .footer-wrap { padding: 0 24px; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
 </style>
 </head>
-
 <body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
 
 <!-- NAV -->
 <nav>
-  <div>SP_001</div>
+  <a class="nav-id" href="#hero">SP<span>_001</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
   <div class="nav-status">
     <div class="status-dot"></div>
-    Open to Quant & Research Roles
+    Available for opportunities
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
+  <canvas class="hero-bg-canvas" id="bgCanvas"></canvas>
+
   <div class="hero-left">
-    <h1 class="hero-name">Shubham Pandey</h1>
-
+    <div class="hero-eyebrow">Portfolio · 2025</div>
+    <h1 class="hero-name">
+      Shubham
+      <em class="hero-name-line2">Pandey</em>
+    </h1>
     <p class="hero-descriptor">
-      Computational Physicist working at intersection of ML, Quant Finance and Scientific Computing.
+      <strong>Computational Physicist</strong> building at the intersection of stochastic modeling,
+      machine learning, and quantitative finance. From no-arbitrage neural networks
+      to supernova hydrodynamics — I model complex systems.
     </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Get in Touch ›</a>
+      <a href="#projects" class="btn btn-outline">View Work</a>
+    </div>
+  </div>
 
-    <br>
-    <a href="#contact" class="btn btn-gold">Contact</a>
-    <a href="#projects" class="btn btn-outline">Projects</a>
+  <div class="hero-right">
+    <div class="terminal-card">
+      <div class="terminal-bar">
+        <div class="t-dot t-dot-r"></div>
+        <div class="t-dot t-dot-y"></div>
+        <div class="t-dot t-dot-g"></div>
+        <span class="terminal-title">profile.json</span>
+      </div>
+      <div class="terminal-body">
+        <span class="t-line"><span class="t-prompt">{</span></span>
+        <span class="t-blank"></span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Shubham Pandey"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Pune, India"</span>,</span>
+        <span class="t-blank"></span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Research Intern @ Quant Insider"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"degree"</span>: <span class="t-str">"B.Sc. Computational Physics"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"graduation"</span>: <span class="t-num">2026</span>,</span>
+        <span class="t-blank"></span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"domains"</span>: [</span>
+        <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Quantitative Finance"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Machine Learning"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Scientific Computing"</span></span>
+        <span class="t-line">&nbsp;&nbsp;],</span>
+        <span class="t-blank"></span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-comment">// key performance metrics</span></span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"option_mae"</span>: <span class="t-num">0.38</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"arb_compliance"</span>: <span class="t-str">"85.2%"</span>,</span>
+        <span class="t-line">&nbsp;&nbsp;<span class="t-key">"portfolio_sharpe"</span>: <span class="t-num">1.12</span></span>
+        <span class="t-blank"></span>
+        <span class="t-line"><span class="t-prompt">}</span></span>
+      </div>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric-box">
+        <div class="metric-num">1.12</div>
+        <div class="metric-sub">SHARPE RATIO</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">22.9%</div>
+        <div class="metric-sub">ANNUAL RETURN</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">0.38</div>
+        <div class="metric-sub">OPTION MAE</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">911</div>
+        <div class="metric-sub">CONTRACTS TESTED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">01 — Experience</div>
+        <h2 class="section-title">Where I've <em>worked</em></h2>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">May 2025 — Present</div>
+        <div class="exp-company">Quant Insider</div>
+        <div class="exp-badge">● Active</div>
+      </div>
+      <div>
+        <div class="exp-role">Research Intern</div>
+        <ul class="exp-bullets">
+          <li>Analyzed <strong>cryptocurrency and derivatives markets</strong> using Toda–Yamamoto Granger causality to identify lead–lag relationships and directional predictability.</li>
+          <li>Applied <strong>rough volatility and long-memory estimators</strong> — Hurst exponent, RFSV-style dynamics — to model irregular financial market behavior.</li>
+          <li>Designed and backtested <strong>mean-reversion and pairs-trading strategies</strong> using stationarity tests, cointegration analysis, and Andrews–Kim changepoint detection.</li>
+          <li>Implemented <strong>rolling Sharpe ratio evaluation</strong>, regime diagnostics, and publication-quality visual analytics for US equity data including S&P 500 and sector ETFs.</li>
+          <li>Developed the mathematical framework for a <strong>Wits &amp; Wagers quantitative game engine</strong> for probability calibration and payoff optimization used in quant interview preparation.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="projects-grid">
-
-    <!-- PROJECT 1 -->
-    <div class="proj-card">
-      <h3 class="proj-title">Multi-Factor Strategy</h3>
-      <p class="proj-desc">Momentum, Value, Quality strategy</p>
-
+  <div class="section-wrap">
+    <div class="section-head">
       <div>
-        <span class="proj-stat">Sharpe 1.12</span>
-        <span class="proj-stat">Return 22.9%</span>
-      </div>
-
-      <div class="proj-links">
-        <a href="https://github.com/yourusername/project1" target="_blank" class="proj-link">Code ↗</a>
-        <a href="#" class="proj-link">Details</a>
+        <div class="section-num">02 — Projects</div>
+        <h2 class="section-title">Selected <em>work</em></h2>
       </div>
     </div>
+    <div class="projects-grid">
 
-    <!-- PROJECT 2 -->
-    <div class="proj-card">
-      <h3 class="proj-title">Arbitrage-Free NN</h3>
-      <p class="proj-desc">Option pricing with constraints</p>
-
-      <div>
-        <span class="proj-stat">MAE 0.38</span>
-        <span class="proj-stat">85% Arb</span>
+      <div class="proj-card">
+        <div class="proj-tag tag-sys">Quant Research</div>
+        <h3 class="proj-title">Robust Multi-Factor Portfolio Strategy</h3>
+        <p class="proj-desc">Systematic equity strategy using Momentum, Value, Quality, and Low-Volatility factors. Built a modular research pipeline including factor modeling, portfolio optimization, and full backtesting engine in Python.</p>
+        <div class="proj-stats">
+          <span class="proj-stat">Sharpe 1.12</span>
+          <span class="proj-stat">Ann. Return 22.9%</span>
+          <span class="proj-stat">Max DD −27.8%</span>
+        </div>
       </div>
 
-      <div class="proj-links">
-        <a href="https://github.com/yourusername/project2" target="_blank" class="proj-link">Code ↗</a>
-        <a href="#" class="proj-link">Details</a>
+      <div class="proj-card">
+        <div class="proj-tag tag-nn">Deep Learning · Finance</div>
+        <h3 class="proj-title">Hybrid Neural Network for Arbitrage-Free Option Pricing</h3>
+        <p class="proj-desc">Hybrid neural network for pricing SPY options by embedding financial constraints into deep learning architecture. Enforced static and dynamic no-arbitrage conditions via structured loss functions and curriculum learning. Implemented diagnostics using Python, NumPy, Pandas, and PyTorch/TensorFlow.</p>
+        <div class="proj-stats">
+          <span class="proj-stat">MAE 0.38</span>
+          <span class="proj-stat">85.2% Arb-Compliance</span>
+          <span class="proj-stat">911 Contracts</span>
+        </div>
+        <div class="proj-supervisor">
+          <span class="supervisor-label">Collaborator:</span> Parth Bhanushali (CQF) &nbsp;·&nbsp;
+          <span class="supervisor-label">Supervisor:</span> Prof. Dr. Deobrat Singh, MIT-WPU
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag tag-ai">AI · Hardware Systems</div>
+        <h3 class="proj-title">AdvRad — AI Radiation Detection System</h3>
+        <p class="proj-desc">Led a 5-member team building a portable AI-powered radiation detection system integrating ESP32 microcontrollers with Geiger–Müller tubes. Designed end-to-end architecture with real-time data acquisition, cloud logging, AI-based radiation pattern classification, and anomaly detection for improved situational awareness.</p>
+        <div class="proj-stats">
+          <span class="proj-stat">Team Lead</span>
+          <span class="proj-stat">5 Members</span>
+          <span class="proj-stat">Real-time AI</span>
+        </div>
+        <div class="proj-supervisor">
+          <span class="supervisor-label">Supervisor:</span> Prof. Dr. Deobrat Singh, MIT-WPU
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag tag-sim">Astrophysics · Simulation</div>
+        <h3 class="proj-title">Supernova Hydrodynamics — MIT-WPU Research</h3>
+        <p class="proj-desc">Conducted computational research on multidimensional supernova hydrodynamics focusing on radiative shock propagation and early-time emission. Implemented a Python-based Godunov-type finite-volume solver to model shock dynamics and energy transport in stellar envelopes. Analyzed simulated early light curves to study shock breakout signatures and improve early supernova detection sensitivity.</p>
+        <div class="proj-stats">
+          <span class="proj-stat">Jan–Jul 2025</span>
+          <span class="proj-stat">Godunov Solver</span>
+          <span class="proj-stat">Shock Breakout</span>
+        </div>
+        <div class="proj-supervisor">
+          <span class="supervisor-label">Supervisor:</span> Prof. Dr. Deobrat Singh, Dept. of Computational Physics, MIT-WPU
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">03 — Skills</div>
+        <h2 class="section-title">Technical <em>arsenal</em></h2>
       </div>
     </div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">⌨</span><span class="skill-block-label">Languages</span></div>
+        <div class="skill-block-body"><span class="skill-chip">Python</span><span class="skill-chip">C++</span><span class="skill-chip">HTML/CSS</span><span class="skill-chip">DSA</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">◈</span><span class="skill-block-label">ML &amp; Data</span></div>
+        <div class="skill-block-body"><span class="skill-chip">Regression</span><span class="skill-chip">Clustering</span><span class="skill-chip">Feature Engineering</span><span class="skill-chip">Time Series</span><span class="skill-chip">Data Viz</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">∫</span><span class="skill-block-label">Computational</span></div>
+        <div class="skill-block-body"><span class="skill-chip">PDE/ODE Solvers</span><span class="skill-chip">Finite Difference</span><span class="skill-chip">Monte Carlo</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">∑</span><span class="skill-block-label">Mathematics</span></div>
+        <div class="skill-block-body"><span class="skill-chip">Probability</span><span class="skill-chip">Statistics</span><span class="skill-chip">Linear Algebra</span><span class="skill-chip">Game Theory</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">₿</span><span class="skill-block-label">Finance &amp; Quant</span></div>
+        <div class="skill-block-body"><span class="skill-chip">Volatility Modeling</span><span class="skill-chip">Option Pricing</span><span class="skill-chip">Risk Analytics</span><span class="skill-chip">Cointegration</span><span class="skill-chip">Regime Detection</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-icon">⚙</span><span class="skill-block-label">Tools &amp; Libraries</span></div>
+        <div class="skill-block-body"><span class="skill-chip">NumPy</span><span class="skill-chip">Pandas</span><span class="skill-chip">Scikit-learn</span><span class="skill-chip">TensorFlow</span><span class="skill-chip">Matplotlib</span><span class="skill-chip">Qiskit</span><span class="skill-chip">Git</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">04 — Certifications</div>
+        <h2 class="section-title">Credentials &amp; <em>Training</em></h2>
+      </div>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-logo cert-logo-gs">GS</div>
+        <div class="cert-body">
+          <div class="cert-issuer">Goldman Sachs · Forage</div>
+          <div class="cert-title">Risk Management Virtual Simulation</div>
+          <div class="cert-desc">Performed risk assessment and exposure modeling, including factor risk decomposition and portfolio stress testing. Conducted portfolio analysis under simulated market scenarios.</div>
+          <span class="cert-year">2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-logo cert-logo-wq">WQ</div>
+        <div class="cert-body">
+          <div class="cert-issuer">WorldQuant Brain</div>
+          <div class="cert-title">Silver Level — Alpha Research</div>
+          <div class="cert-desc">Developed alpha signals, pair-trading strategies, and quantitative models. Achieved Silver Level recognition for consistent signal quality and research output.</div>
+          <span class="cert-year">2025</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-logo cert-logo-jp">JP</div>
+        <div class="cert-body">
+          <div class="cert-issuer">J.P. Morgan · Forage</div>
+          <div class="cert-title">Quantitative Research Virtual Simulation</div>
+          <div class="cert-desc">Conducted factor research, backtesting, and statistical modeling within a simulated quant research environment replicating real JPMorgan workflows.</div>
+          <span class="cert-year">2025</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-logo cert-logo-ud">DS</div>
+        <div class="cert-body">
+          <div class="cert-issuer">Udemy</div>
+          <div class="cert-title">Data Structures &amp; Algorithms</div>
+          <div class="cert-desc">Completed a comprehensive DSA course covering arrays, linked lists, stacks, queues, trees, graphs, recursion, sorting algorithms, and complexity analysis.</div>
+          <span class="cert-year">2024</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">05 — Education</div>
+        <h2 class="section-title">Academic <em>foundation</em></h2>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">B.Sc. (Hons) Computational Physics</div>
+        <div class="edu-school">MIT World Peace University</div>
+        <div class="edu-loc">Pune, Maharashtra, India</div>
+      </div>
+      <div>
+        <div class="edu-year">2026</div>
+        <span class="edu-status">● Expected June 2026</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Contact</h2>
-
-  <a href="mailto:shubhampandey1069@gmail.com?subject=Opportunity%20Discussion">
-    Email Me
-  </a>
-
-  <br><br>
-
-  <!-- FIXED RESUME -->
-  <a href="Shubham_Pandey_Resume.pdf" download>
-    Download Resume
-  </a>
-
+  <div class="section-wrap">
+    <div class="section-num">06 — Contact</div>
+    <div class="contact-inner">
+      <h2 class="contact-headline">Let's build<br>something <em>rigorous</em></h2>
+      <p class="contact-sub">Open to research collaborations, quant finance roles, and ML projects. I respond to every message.</p>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:shubhampandey1069@gmail.com">
+          <div class="contact-item-icon">✉</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">shubhampandey1069@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-item" href="tel:+917317066093">
+          <div class="contact-item-icon">☏</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+91 73170 66093</div>
+          </div>
+        </a>
+        <a class="contact-item" href="https://linkedin.com/in/shubham-pandey-007420327" target="_blank">
+          <div class="contact-item-icon">in</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-val">shubham-pandey-007420327</div>
+          </div>
+        </a>
+        <a class="contact-item" href="#" download>
+          <div class="contact-item-icon">↓</div>
+          <div>
+            <div class="contact-item-label">Resume</div>
+            <div class="contact-item-val">Download PDF</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
+<div class="footer-wrap">
+  <footer>
+    <p>© 2025 Shubham Pandey — Pune, India</p>
+    <p>Computational Physics · AI · Quant Finance</p>
+  </footer>
+</div>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cur');
+const curRing = document.getElementById('curRing');
+let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animCursor() {
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+  curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { curRing.style.width = '44px'; curRing.style.height = '44px'; curRing.style.borderColor = '#f0a500'; });
+  el.addEventListener('mouseleave', () => { curRing.style.width = '28px'; curRing.style.height = '28px'; curRing.style.borderColor = 'rgba(240,165,0,0.35)'; });
+});
+
+// CANVAS BACKGROUND — animated market waveforms
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+let t = 0;
+(function drawBg() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const w = canvas.width, h = canvas.height;
+  [[`rgba(240,165,0,0.55)`, 1.5, 50, 0.007, 0.012],
+   [`rgba(0,212,170,0.35)`,  1,  35, 0.011, 0.02 ],
+   [`rgba(240,165,0,0.25)`,  1,  25, 0.016, 0.03 ]
+  ].forEach(([color, lw, amp, freq, spd], i) => {
+    ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = lw;
+    const yBase = h * (0.45 + i * 0.08);
+    for (let x = 0; x <= w; x += 2) {
+      const y = yBase + Math.sin(x*freq + t*spd)*amp + Math.sin(x*freq*2.5 + t*spd*1.8)*(amp*0.4);
+      x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  });
+  t += 0.6;
+  requestAnimationFrame(drawBg);
+})();
+
+// SCROLL REVEAL
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .exp-item, .proj-card, .skill-block, .edu-card, .cert-card').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
